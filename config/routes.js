@@ -3,12 +3,16 @@ const router = express.Router()
 
 // Import Middlewares
 
-// Import Controllers
+const authController = require('../controllers/auth.controller')
+//userController
 
-/* Routes
-    - Auth
-    - User
-    - Etc. */
+
+// Routes
+    //- Auth
+router.post('/users', authController.create)
+
+    //- User
+
 
 
 module.exports = router
