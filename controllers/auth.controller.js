@@ -3,12 +3,16 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User.model');
 
 module.exports.register = (req, res, next) => {
-    console.log(req.body.email)
-    User.findOne({email: req.body.email})
+    const newUser = req.body;
+
+    if (req.file) {
+        newUser.image = req.file.path;
+    }
+
+    User.findOne({email: newUser.email})
         .then(user => {
-            console.log(user);
             if(!user){
-                return User.create(req.body)
+                return User.create(newUser)
                     .then(userCreated => {
                         res.status(201).json(userCreated)
                     })
