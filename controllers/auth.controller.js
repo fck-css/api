@@ -3,10 +3,18 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User.model');
 
 module.exports.register = (req, res, next) => {
-    console.log('hola back')
-    User.create(req.body)
-        .then(userCreated => {
-            res.status(201).json(userCreated)
+    console.log(req.body.email)
+    User.findOne({email: req.body.email})
+        .then(user => {
+            console.log(user);
+            if(!user){
+                return User.create(req.body)
+                    .then(userCreated => {
+                        res.status(201).json(userCreated)
+                    })
+            } else {
+                next(createError(409, 'Email already exists'));
+            }
         })
         .catch(next)
 };

@@ -38,14 +38,16 @@ app.use((error, req, res, next) => {
     }
 
     const data = {}
-    if (data.errors = data.errors) {
-        Object.keys(error.errors).reduce((errors, key) => ({
-            ...errors,
-            [key]: error.errors[key].message || error.errors[key],
-        }), {})
-    } else {
-        undefined
-    }
+    data.message = error.message;
+    data.errors = error.errors
+        ? Object.keys(error.errors).reduce(
+            (errors, key) => ({
+              ...errors,
+              [key]: error.errors[key].message || error.errors[key],
+            }),
+            {}
+          )
+        : undefined;
     
     res.status(error.status).json(data)
 });
@@ -54,5 +56,4 @@ const port = Number(process.env.PORT || 3001);
 
 app.listen(port, () => {
   console.log(`Ready! Listening on port ${port}.`);
-}); 
-
+});
