@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const createError = require('http-errors');
 const logger = require('morgan');
 const express = require('express');
+const cors = require('cors');
 
 require('./config/db.config')
 const app = express();
@@ -11,6 +12,7 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(logger('dev'));
+app.use(cors());
 
 
 // Routes
