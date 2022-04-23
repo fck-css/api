@@ -19,7 +19,7 @@ module.exports.getCurrentUser = (req, res, next) => {
             if (!user) {
                 next(createError(404, 'User not found!'))
             } else {
-                res.status(400).json(user)
+                res.status(200).json(user)
             }
         })
         .catch(next);
