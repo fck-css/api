@@ -24,3 +24,13 @@ module.exports.getCurrentUser = (req, res, next) => {
         })
         .catch(next);
 };
+
+module.exports.saveSnippet = (req, res, next) => {
+    const newSnippet = req.body;
+
+    Snippet.create(newSnippet)
+        .then(snippetCreated => {
+            res.status(201).json(snippetCreated);
+        })
+        .catch(next)
+};
