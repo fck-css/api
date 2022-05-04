@@ -16,6 +16,7 @@ module.exports.getUserById = (req, res, next) => {
 
 module.exports.getCurrentUser = (req, res, next) => {
     User.findById(req.currentUser)
+        .populate('snippets')
         .then(user => {
             if (!user) {
                 next(createError(404, 'User not found!'))
