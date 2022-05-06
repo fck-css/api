@@ -35,3 +35,11 @@ module.exports.saveSnippet = (req, res, next) => {
         })
         .catch(next)
 };
+
+module.exports.deleteSnippet = (req, res, next) => {
+    Snippet.findByIdAndDelete(req.params.id)
+        .then((response) => {
+            res.status(202);
+        })
+        .catch(next)
+};

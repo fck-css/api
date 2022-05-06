@@ -14,5 +14,7 @@ router.post('/login', authMiddleware.isNotAuthenticated, authController.login)
 router.get('/users/me', authMiddleware.isAuthenticated, userController.getCurrentUser)
 router.get('/users/:id', userController.getUserById)
 router.post('/users/snippet', authMiddleware.isAuthenticated, userController.saveSnippet);
+router.delete('/users/snippet/:id', authMiddleware.isAuthenticated, userController.deleteSnippet);
+
 
 module.exports = router
