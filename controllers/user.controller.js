@@ -43,3 +43,21 @@ module.exports.deleteSnippet = (req, res, next) => {
         })
         .catch(next)
 };
+
+module.exports.editProfile = (req, res, next) => {
+    if (req.file) {
+        req.body.image = req.file.path;
+    
+        User.findByIdAndUpdate(req.user.id, { image: req.body.image, name: req.body.name})
+            .then((profileUpdated) => {
+                res.status(200).json(profileUpdated);
+            })
+            .catch(next);
+    } else {
+        User.findByIdAndUpdate(req.params.id, { name: req.body.name })
+            .then((profileUpdated) => {
+                res.status(200).json(profileUpdated);
+            })
+            .catch(next)
+    }
+};
