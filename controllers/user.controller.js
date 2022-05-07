@@ -39,25 +39,16 @@ module.exports.saveSnippet = (req, res, next) => {
 module.exports.deleteSnippet = (req, res, next) => {
     Snippet.findByIdAndDelete(req.params.id)
         .then((response) => {
-            res.status(202);
+            res.status(202).send('deleted');
         })
         .catch(next)
 };
 
 module.exports.editProfile = (req, res, next) => {
-    if (req.file) {
-        req.body.image = req.file.path;
-    
-        User.findByIdAndUpdate(req.user.id, { image: req.body.image, name: req.body.name})
-            .then((profileUpdated) => {
-                res.status(200).json(profileUpdated);
-            })
-            .catch(next);
-    } else {
-        User.findByIdAndUpdate(req.params.id, { name: req.body.name })
-            .then((profileUpdated) => {
-                res.status(200).json(profileUpdated);
-            })
-            .catch(next)
-    }
+    User.findByIdAndUpdate(req.params.id, { name: req.body.name })
+        .then((profileUpdated) => {
+            res.status(200).json(profileUpdated);
+        })
+        .catch(next)
+
 };
