@@ -45,7 +45,7 @@ module.exports.deleteSnippet = (req, res, next) => {
 };
 
 module.exports.editProfile = (req, res, next) => {
-    User.findByIdAndUpdate(req.params.id, { name: req.body.name })
+    User.findByIdAndUpdate(req.params.id, { name: req.body.name }, { new: true })
         .then((profileUpdated) => {
             res.status(200).send('profile updated');
         })

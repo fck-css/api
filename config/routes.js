@@ -17,6 +17,4 @@ router.post('/users/snippet', authMiddleware.isAuthenticated, userController.sav
 router.delete('/users/snippet/:id', authMiddleware.isAuthenticated, userController.deleteSnippet);
 router.put('/users/:id', authMiddleware.isAuthenticated, userController.editProfile);
 
-
-
 module.exports = router
