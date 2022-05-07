@@ -15,7 +15,7 @@ router.get('/users/me', authMiddleware.isAuthenticated, userController.getCurren
 router.get('/users/:id', userController.getUserById)
 router.post('/users/snippet', authMiddleware.isAuthenticated, userController.saveSnippet);
 router.delete('/users/snippet/:id', authMiddleware.isAuthenticated, userController.deleteSnippet);
-router.patch('/users/:id', authMiddleware.isAuthenticated, upload.single('image'), userController.editProfile);
+router.patch('/users/:id', authMiddleware.isAuthenticated, userController.editProfile);
 
 
 

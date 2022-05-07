@@ -39,7 +39,7 @@ module.exports.saveSnippet = (req, res, next) => {
 module.exports.deleteSnippet = (req, res, next) => {
     Snippet.findByIdAndDelete(req.params.id)
         .then((response) => {
-            res.status(202).send('deleted');
+            res.status(202).send('snippet deleted');
         })
         .catch(next)
 };
@@ -47,7 +47,7 @@ module.exports.deleteSnippet = (req, res, next) => {
 module.exports.editProfile = (req, res, next) => {
     User.findByIdAndUpdate(req.params.id, { name: req.body.name })
         .then((profileUpdated) => {
-            res.status(200).json(profileUpdated);
+            res.status(200).send('profile updated');
         })
         .catch(next)
 
